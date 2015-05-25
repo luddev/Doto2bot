@@ -14,7 +14,7 @@ var client = new irc.Client(config.SERVER, config.NICKNAME, {
     channels: config.channelList,
     userName: config.USERNAME,
     realName: config.REALNAME,
-    port: config.PORT.
+    port: config.PORT,
     autoRejoin: config.AUTO_REJOIN,
     floodProtection: config.FLOOD_PROTECTION
 });
