@@ -1,0 +1,23 @@
+{
+  "name": "Doto2",
+  "version": "1.0.0",
+  "description": "Dota 2 TI5 Bot.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "dota2",
+    "bot",
+    "irc"
+  ],
+  "author": "lud",
+  "license": "MIT",
+  "dependencies": {
+    "URIjs": "^1.15.1",
+    "irc": "^0.3.12",
+    "moment": "^2.10.3",
+    "request": "^2.55.0",
+    "underscore": "^1.8.3"
+  }
+}
