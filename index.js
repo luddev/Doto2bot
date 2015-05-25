@@ -28,27 +28,33 @@ client.addListener('message', function (from, to, message) {
     //console.log(from + ' => ' + to + ': ' + message);
     mListener.handler.emit('message',from,to,message,function(sendBuffer,printHelp) {
         if(sendBuffer)   {
-            for(data in sendBuffer)  {
-                if(data == 4)   {
-                    break;
-                }
-                for(tdata in sendBuffer[data])   {
-                    
-                    if(message.toLowerCase() == config.prefix + "upcoming" )    {
-                        client.notice(from,sendBuffer[data][tdata]);
+            if(sendBuffer.length == 0)  {
+                client.say(to,"No live matches for now.");
+            }
+            else {
+                for(data in sendBuffer)  {
+                    if(data == 8)   {
+                        break;
                     }
-                    else {
-                        client.say(to,sendBuffer[data][tdata]);
+                    for(tdata in sendBuffer[data])   {
+                        
+                        if(message.toLowerCase() == config.prefix + "upcoming" )    {
+                            client.notice(from,sendBuffer[data][tdata]);
+                        }
+                        else {
+                            client.say(to,sendBuffer[data][tdata]);
+                        }
                     }
-                }
-                if(message.toLowerCase() == config.prefix + "upcoming" && sendBuffer.length != data)    {
-                    client.notice(from,"--------------------------");
-                }
-                else if(sendBuffer.length != data){
-                    client.say(to,"--------------------------");
-                }
+                    if(message.toLowerCase() == config.prefix + "upcoming" && sendBuffer.length != data)    {
+                        client.notice(from,"--------------------------");
+                    }
+                    else if(sendBuffer.length != data){
+                        client.say(to,"--------------------------");
+                    }
 
-            }  
+                }  
+            }
+
         }
         else if(printHelp == true){
             client.say(to,"Try these : !live, !upcoming");
