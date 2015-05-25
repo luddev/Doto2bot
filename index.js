@@ -12,6 +12,11 @@ console.log(config.SERVER);
 
 var client = new irc.Client(config.SERVER, config.NICKNAME, {
     channels: config.channelList,
+    userName: config.USERNAME,
+    realName: config.REALNAME,
+    port: config.PORT.
+    autoRejoin: config.AUTO_REJOIN,
+    floodProtection: config.FLOOD_PROTECTION
 });
 
 
@@ -27,23 +32,21 @@ client.addListener('message', function (from, to, message) {
                 if(data == 4)   {
                     break;
                 }
-                setTimeout(function(data){
-                    for(tdata in sendBuffer[data])   {
-                        
-                        if(message.toLowerCase() == config.prefix + "upcoming" )    {
-                            client.notice(from,sendBuffer[data][tdata]);
-                        }
-                        else {
-                            client.say(to,sendBuffer[data][tdata]);
-                        }
+                for(tdata in sendBuffer[data])   {
+                    
+                    if(message.toLowerCase() == config.prefix + "upcoming" )    {
+                        client.notice(from,sendBuffer[data][tdata]);
                     }
-                    if(message.toLowerCase() == config.prefix + "upcoming" && sendBuffer.length != data)    {
-                        client.notice(from,"--------------------------");
+                    else {
+                        client.say(to,sendBuffer[data][tdata]);
                     }
-                    else if(sendBuffer.length != data){
-                        client.say(to,"--------------------------");
-                    }
-                },1000,data);
+                }
+                if(message.toLowerCase() == config.prefix + "upcoming" && sendBuffer.length != data)    {
+                    client.notice(from,"--------------------------");
+                }
+                else if(sendBuffer.length != data){
+                    client.say(to,"--------------------------");
+                }
 
             }  
         }
